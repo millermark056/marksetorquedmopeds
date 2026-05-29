@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a18;
+      --ink-muted: #6b6b65;
+      --ink-faint: #9b9b94;
+      --surface: #fafaf8;
+      --surface-alt: #f3f3ef;
+      --border: rgba(0,0,0,0.08);
+      --accent: #1a1a18;
+      --accent-hover: #3a3a36;
+      --radius: 10px;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,250,248,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 0.5rem 1.1rem;
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { background: var(--surface-alt); }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem;
+      margin-bottom: 1.75rem;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--ink-muted);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--ink-muted);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.75rem; flex-wrap: wrap;
+    }
+
+    .hero-actions .btn-primary { padding: 0.7rem 1.6rem; font-size: 0.95rem; }
+
+    /* ── Social proof ── */
+    .social-proof {
+      text-align: center;
+      padding: 2rem 2rem 0;
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Feature grid ── */
+    .features {
+      max-width: 1000px;
+      margin: 6rem auto;
+      padding: 0 2rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 1px);
+      overflow: hidden;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      padding: 2rem;
+    }
+
+    .feature-icon {
+      width: 36px; height: 36px;
+      background: var(--surface-alt);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-icon svg {
+      width: 18px; height: 18px;
+      stroke: var(--ink);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .feature-card h3 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+
+    /* ── Big stat / showcase ── */
+    .showcase {
+      background: var(--surface-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    .showcase h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: -0.02em;
+      max-width: 600px;
+      margin: 0 auto 1rem;
+    }
+
+    .showcase p {
+      font-size: 1rem;
+      color: var(--ink-muted);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+    }
+
+    .stats {
+      display: flex; align-items: center; justify-content: center;
+      gap: 4rem; flex-wrap: wrap;
+      margin-top: 4rem;
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      letter-spacing: -0.03em;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Testimonials ── */
+    .testimonials {
+      max-width: 900px;
+      margin: 6rem auto;
+      padding: 0 2rem;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+
+    .testimonial-card blockquote {
+      font-size: 0.9rem;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+
+    .testimonial-author {
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--surface-alt);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      flex-shrink: 0;
+    }
+
+    .author-info p { font-size: 0.8rem; font-weight: 500; }
+    .author-info span { font-size: 0.75rem; color: var(--ink-faint); }
+
+    /* ── CTA ── */
+    .cta {
+      max-width: 640px;
+      margin: 4rem auto 8rem;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+    }
+
+    .cta p {
+      font-size: 1rem;
+      color: var(--ink-muted);
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+
+    footer .nav-logo { font-size: 1rem; }
+
+    .footer-links {
+      display: flex; gap: 1.5rem; list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--ink); }
+
+    footer small {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .hero { padding: 5rem 1.25rem 4rem; }
+      .features, .testimonials, .cta { padding: 0 1.25rem; }
+      .stats { gap: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#" class="nav-logo">Product</a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#" class="btn btn-primary">Get started</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <span class="eyebrow">Now in public beta</span>
+    <h1>The better way to <em>get things done</em></h1>
+    <p>A focused, minimal tool that helps your team move faster — without the complexity you don't need.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-primary">Start for free →</a>
+      <a href="#features" class="btn btn-outline">See how it works</a>
+    </div>
+  </section>
+
+  <p class="social-proof">Trusted by teams at Stripe, Linear, Notion, and 400+ others</p>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <p class="section-label">Features</p>
+    <div class="feature-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Lightning fast</h3>
+        <p>Everything responds instantly. No loading spinners, no lag — just the work.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        </div>
+        <h3>Stays out of the way</h3>
+        <p>A clean interface that surfaces what matters and hides everything that doesn't.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>Built for async</h3>
+        <p>Works the way distributed teams actually work — across timezones and schedules.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Secure by default</h3>
+        <p>End-to-end encryption, SSO, and audit logs — enterprise-grade out of the box.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+        </div>
+        <h3>Insightful analytics</h3>
+        <p>Understand your team's output and spot bottlenecks before they slow you down.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.87"/></svg>
+        </div>
+        <h3>Collaboration first</h3>
+        <p>Comments, mentions, and real-time presence woven in — not bolted on.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Showcase / stats -->
+  <section class="showcase">
+    <h2>Designed to do more with less</h2>
+    <p>We removed everything that didn't earn its place. What's left is exactly what you need.</p>
+    <a href="#" class="btn btn-primary">Try it free</a>
+    <div class="stats">
+      <div class="stat-item">
+        <span class="stat-number">3×</span>
+        <span class="stat-label">faster onboarding</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">98%</span>
+        <span class="stat-label">uptime SLA</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">40%</span>
+        <span class="stat-label">less time in meetings</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">12k+</span>
+        <span class="stat-label">teams worldwide</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <p class="section-label">What people say</p>
+    <div class="testimonial-grid">
+
+      <div class="testimonial-card">
+        <blockquote>"We tried a dozen tools. This is the one we actually kept using. It's the rare product that respects your time."</blockquote>
+        <div class="testimonial-author">
+          <div class="avatar">AK</div>
+          <div class="author-info">
+            <p>Amara Kone</p>
+            <span>Head of Product, Luma</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <blockquote>"Onboarded our entire team in an afternoon. No training sessions, no documentation — it just made sense."</blockquote>
+        <div class="testimonial-author">
+          <div class="avatar">JL</div>
+          <div class="author-info">
+            <p>Jake Liu</p>
+            <span>Engineering Lead, Relay</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <blockquote>"The fastest we've ever shipped. Having everything in one calm, quiet place made a bigger difference than I expected."</blockquote>
+        <div class="testimonial-author">
+          <div class="avatar">SR</div>
+          <div class="author-info">
+            <p>Sofia Reyes</p>
+            <span>CTO, Dusk</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="pricing">
+    <h2>Ready to simplify?</h2>
+    <p>Free for individuals. Simple, transparent pricing when your team grows.</p>
+    <a href="#" class="btn btn-primary" style="font-size:1rem; padding: 0.75rem 2rem;">Get started for free →</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <a href="#" class="nav-logo">Product</a>
+    <ul class="footer-links">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <small>© 2026 Product, Inc.</small>
+  </footer>
+
+</body>
+</html>
